@@ -1,0 +1,47 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>TO DO LIST APP</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+      <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" />
+      <link rel="stylesheet" href={{ url_for('static', filename='dashboard.css') }} />
+    </head>
+    <body>
+        <div class="main">
+            <header>
+                <h1>To do list</h1>
+                <form class="input-container">
+                    {{ form.name(class_="todo-input") }}
+                    <button id="button">Create!</button>
+                </form>
+            </header>
+    
+            <div class="todo-section">
+                <div class="container">
+                    <div class="current">
+                        <h2>Current</h2>
+                        <ul class="todo-list">
+                            <li class="todo"><span>cooking food and doing laundry</span></li>
+                            <li class="todo"><span>Talking with Qazi about some.. ahahahah</span></li>
+                            <li class="todo"><span>buy some things to do some things</span></li>
+                            <li class="todo"><span>cooking food and doing laundry</span></li>
+                            <li class="todo"><span>cooking food and doing laundry</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="completed">
+                        <h2>Completed</h2>
+                        <ul class="todo-list">
+                            <li class="todo"><span>cooking food and doing laundry</span></li>
+                            <li class="todo"><span>Talking with Qazi about some.. ahahahah</span></li>
+                            <li class="todo"><span>buy some things to do some things</span></li>
+                            <li class="todo"><span>cooking food and doing laundry</span></li>
+                            <li class="todo"><span>cooking food and doing laundry</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: #263030;
+  }
+  
+  .main {
+    background: #50a3a2;
+    background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+    background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+    background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+    background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    border-radius: 2px;
+    border-top: 8px solid #50a3a2;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  header {
+    background-color: white;
+    padding: 20px 20px 0 20px;
+    border-radius: 2px 2px 0 0;
+    padding-bottom: 1rem;  
+  }
+  
+  header > h1 {
+    text-align: center;
+    font-family: sans-serif;
+    color: #ABABAB;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  input.todo-input{
+    width: 100%;
+    padding: 10px 8px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 2px solid #ddd;
+    color: #666;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+  }
+  
+  input.todo-input::-webkit-input-placeholder {
+    color: #ddd;
+  }
+  
+  input.todo-input:focus {
+    outline: 0;
+    border: 2px solid #50a3a2;
+  }
+  
+  .add-button {
+    position: relative;
+    bottom: 32px;
+    left: 380px;
+    width: 25px;
+    height: auto;
+  }
+  
+  .add-button:hover {
+    cursor: pointer;
+  }
+  
+  
+  /**** todos ****/
+  .todo-section {
+    padding: 16px 0;
+    height: auto;
+    overflow: scroll;
+    transition: all 2s ease-in-out;
+  }
+  
+  li.todo {
+    transition: all 2s ease-in-out;
+    list-style: none;
+    width: 100%;
+    background: white;
+    color: #aaaaaa;
+    font-family: sans-serif;
+    padding: 10px 8px;
+    letter-spacing: .5px;
+    margin: 4px 0;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  li.todo:hover {
+    cursor: default;
+  }
+
+  .current, .completed {
+    margin: 1rem;
+    width: 30%;
+  }
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+#button {
+  padding: 1rem;
+  border-radius: 0.6rem;
+  margin-left: 1.2rem;
+  width: 10%;
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+  color: white;
+  font-size: 1rem;
+}
+  

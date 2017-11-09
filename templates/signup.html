@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>TO DO LIST APP</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" />
+        <link rel="stylesheet" href={{ url_for('static', filename='styles.css') }} />
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <nav>
+                    <div class="nav-wrapper">
+                        <h1>ToDo List Application</h1>
+                    </div>
+                </nav>
+                <h1>Welcome</h1>
+                
+                <form class="form" method="POST">
+                    {{ form.username(class_="todo-input") }}
+                    {{ form.password(class_="todo-input") }}
+                    <button type="submit" id="login-button">Sign Up!</button>
+                </form>
+                <a href='/'>Got an account? Sign in</a>
+            </div>
+            
+            <ul class="bg-bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <script>
+             $("#login-button").click(function(event){
+                event.preventDefault();
+                
+                $('form').fadeOut(500);
+                $('.wrapper').addClass('form-success');
+            });
+        </script>
+    </body>
+</html>
