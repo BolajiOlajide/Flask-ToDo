@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, url_for, redirect
-from flask_login import LoginManager, login_required
+from flask import Flask, render_template, request, url_for, redirect, flash, g
+from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Server
 import dotenv
@@ -26,6 +26,11 @@ manager.add_command('db', MigrateCommand)
 manager.add_command('runserver', Server())
 
 
+@app.before_request
+def before_request():
+    g.user = current_user
+
+
 @login_manager.user_loader
 def load_user(id):
     return User.query.get(int(id))
@@ -35,27 +40,54 @@ def load_user(id):
 def index():
     form = AuthenticationForm(csrf_enabled=False)
 
-    return render_template('index.html', form=form)
+    if request.method == 'GET':
+        return render_template('index.html', form=form)
+
+    username = request.form['username']
+    password = request.form['password']
+    registered_user = User.query.filter_by(username=username, password=password).first()
+    if registered_user is None:
+        flash('Username or Password is invalid', 'error')
+        return redirect(url_for('index'))
+    login_user(registered_user)
+    return redirect(url_for('dashboard'))
 
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = AuthenticationForm(csrf_enabled=False)
 
-    if request.method == 'POST':
-        user = User(request.form['username'] , request.form['password'])
-        db.session.add(user)
-        db.session.commit()
-        return redirect(url_for('dashboard'))
-    return render_template('signup.html', form=form)
+    if request.method == 'GET':
+        return render_template('signup.html', form=form)
+
+    user = User(username=request.form['username'],
+                password=request.form['password'])
+    db.session.add(user)
+    db.session.commit()
+    login_user(user)
+    return redirect(url_for('dashboard'))
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
+@login_required
 def dashboard():
     form = AddTodoForm(csrf_enabled=False)
-    # todos = Todo.query.filter_by(created_by=g.user.user_id)
-    todos = Todo.query.all()
-    return render_template('dashboard.html', form=form)
+    current_todos = Todo.query.filter_by(created_by=g.user.user_id, status='current')
+    completed_todos = Todo.query.filter_by(created_by=g.user.user_id, status='completed')
+    if request.method == 'POST':
+        name = request.form['name']
+        todo = Todo(name=name, status='current')
+        todo.created_by = g.user.user_id
+        db.session.add(todo)
+        db.session.commit()
+        return redirect(url_for('dashboard'))
+    return render_template('dashboard.html', form=form, current_todos=current_todos, completed_todos=completed_todos)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index')) 
 
 
 if __name__ == '__main__':

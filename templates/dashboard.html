@@ -11,7 +11,7 @@
         <div class="main">
             <header>
                 <h1>To do list</h1>
-                <form class="input-container">
+                <form class="input-container" method="POST">
                     {{ form.name(class_="todo-input") }}
                     <button id="button">Create!</button>
                 </form>
@@ -22,22 +22,18 @@
                     <div class="current">
                         <h2>Current</h2>
                         <ul class="todo-list">
-                            <li class="todo"><span>cooking food and doing laundry</span></li>
-                            <li class="todo"><span>Talking with Qazi about some.. ahahahah</span></li>
-                            <li class="todo"><span>buy some things to do some things</span></li>
-                            <li class="todo"><span>cooking food and doing laundry</span></li>
-                            <li class="todo"><span>cooking food and doing laundry</span></li>
+                            {% for todo in current_todos %}
+                                <li class="todo"><span>{{ todo.name }}</span></li>
+                            {% endfor %}
                         </ul>
                     </div>
 
                     <div class="completed">
                         <h2>Completed</h2>
                         <ul class="todo-list">
-                            <li class="todo"><span>cooking food and doing laundry</span></li>
-                            <li class="todo"><span>Talking with Qazi about some.. ahahahah</span></li>
-                            <li class="todo"><span>buy some things to do some things</span></li>
-                            <li class="todo"><span>cooking food and doing laundry</span></li>
-                            <li class="todo"><span>cooking food and doing laundry</span></li>
+                            {% for todo in completed_todos%}
+                                <li class="todo"><span>{{ todo.name }}</span></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
