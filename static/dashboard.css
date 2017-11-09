@@ -121,4 +121,21 @@
   color: white;
   font-size: 1rem;
 }
-  
+
+#my-button {
+  width: 100%;
+  height: 5vh;
+  outline: 0;
+  font-size: 1.5rem;
+  padding: 0;
+  color: #aaaaaa;
+  background: #FFF;
+}
+
+.todo-type {
+  margin-bottom: 0.7rem;
+}
+
+.single-todo {
+  margin-bottom: 0.8rem;
+}

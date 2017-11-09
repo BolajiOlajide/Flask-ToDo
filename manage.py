@@ -75,6 +75,15 @@ def dashboard():
     current_todos = Todo.query.filter_by(created_by=g.user.user_id, status='current')
     completed_todos = Todo.query.filter_by(created_by=g.user.user_id, status='completed')
     if request.method == 'POST':
+        # import pdb;pdb.set_trace()
+        if request.form['submit']:
+            name = request.form['submit']
+            todo = Todo.query.filter_by(name=name, created_by=g.user.user_id).first()
+            print(name)
+            todo.status = 'completed'
+            db.session.add(todo)
+            db.session.commit()
+            return redirect(url_for('dashboard'))
         name = request.form['name']
         todo = Todo(name=name, status='current')
         todo.created_by = g.user.user_id

@@ -20,19 +20,21 @@
             <div class="todo-section">
                 <div class="container">
                     <div class="current">
-                        <h2>Current</h2>
+                        <h2 class="todo-type">Current</h2>
                         <ul class="todo-list">
                             {% for todo in current_todos %}
-                                <li class="todo"><span>{{ todo.name }}</span></li>
+                                <form class="single-todo" method="POST">
+                                    <button id="my-button" name="submit" type="submit" value="{{ todo.name }}">{{ todo.name }}</button>
+                                </form>
                             {% endfor %}
                         </ul>
                     </div>
 
                     <div class="completed">
-                        <h2>Completed</h2>
+                        <h2 class="todo-type">Completed</h2>
                         <ul class="todo-list">
                             {% for todo in completed_todos%}
-                                <li class="todo"><span>{{ todo.name }}</span></li>
+                                <li class="todo single-todo"><span>{{ todo.name }}</span></li>
                             {% endfor %}
                         </ul>
                     </div>
