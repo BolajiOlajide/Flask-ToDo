@@ -38,7 +38,7 @@ def load_user(id):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    form = AuthenticationForm(csrf_enabled=False)
+    form = AuthenticationForm()
 
     if request.method == 'GET':
         return render_template('index.html', form=form)
@@ -55,7 +55,7 @@ def index():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    form = AuthenticationForm(csrf_enabled=False)
+    form = AuthenticationForm()
 
     if request.method == 'GET':
         return render_template('signup.html', form=form)
@@ -71,12 +71,11 @@ def signup():
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    form = AddTodoForm(csrf_enabled=False)
+    form = AddTodoForm()
     current_todos = Todo.query.filter_by(created_by=g.user.user_id, status='current')
     completed_todos = Todo.query.filter_by(created_by=g.user.user_id, status='completed')
     if request.method == 'POST':
-        # import pdb;pdb.set_trace()
-        if request.form['submit']:
+        if 'submit' in request.form.keys():
             name = request.form['submit']
             todo = Todo.query.filter_by(name=name, created_by=g.user.user_id).first()
             print(name)

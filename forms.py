@@ -8,9 +8,15 @@ class AddTodoForm(FlaskForm):
                        render_kw={"placeholder": "add a to-do..."})
     status = StringField('status')
 
+    class Meta:
+        csrf = False
+
 
 class AuthenticationForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()],
                            render_kw={"placeholder": "Username"})
     password = PasswordField('password', validators=[DataRequired()],
                              render_kw={"placeholder": "Password"})
+
+    class Meta:
+        csrf = False

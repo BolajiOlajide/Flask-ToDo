@@ -21,6 +21,9 @@
                     {{ form.username(class_="todo-input") }}
                     {{ form.password(class_="todo-input") }}
                     <button type="submit" id="login-button">Login</button>
+                    <br />
+                    <br />                    
+                    <a href='/signup' class='link-auth'> Sign Up here!</a>                
                 </form>
             </div>
             
@@ -37,13 +40,5 @@
                 <li></li>
             </ul>
         </div>
-        <script>
-             $("#login-button").click(function(event){
-                event.preventDefault();
-                
-                $('form').fadeOut(500);
-                $('.wrapper').addClass('form-success');
-            });
-        </script>
     </body>
 </html>

@@ -6,7 +6,6 @@ The definition of the different configuration settings is contained here:
 - Production Configuration
 """
 import os
-from os.path import join, dirname
 
 import dotenv
 
@@ -36,7 +35,7 @@ class DevelopmentConfig(Config):
     modes, so they are defined in a class called DevelopmentConfig.
     """
 
-    SQLALCHEMY_DATABASE_URI = dotenv.get("DATABASE_URI")
+    SQLALCHEMY_DATABASE_URI = dotenv.get("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     DEBUG = True
 
@@ -49,7 +48,7 @@ class ProductionConfig(Config):
     modes, so they are defined in a class called ProductionConfig.
     """
 
-    SQLALCHEMY_DATABASE_URI = dotenv.get("DATABASE_URI")
+    SQLALCHEMY_DATABASE_URI = dotenv.get("DATABASE_URL")
 
 
 # Object containing the different configuration classes.

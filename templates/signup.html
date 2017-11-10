@@ -21,8 +21,10 @@
                     {{ form.username(class_="todo-input") }}
                     {{ form.password(class_="todo-input") }}
                     <button type="submit" id="login-button">Sign Up!</button>
+                    <br />
+                    <br />                    
+                    <a href='/'>Got an account? Sign in</a>   
                 </form>
-                <a href='/'>Got an account? Sign in</a>
             </div>
             
             <ul class="bg-bubbles">
@@ -38,13 +40,5 @@
                 <li></li>
             </ul>
         </div>
-        <script>
-             $("#login-button").click(function(event){
-                event.preventDefault();
-                
-                $('form').fadeOut(500);
-                $('.wrapper').addClass('form-success');
-            });
-        </script>
     </body>
 </html>
