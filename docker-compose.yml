@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  web:
+    container_name: todo_web
+    build: .
+    env_file:
+      - ./.env
+    ports:
+      - "5000:5000"
+  db:
+    container_name: todo_db
+    image: postgres
+    restart: always
